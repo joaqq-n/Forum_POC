@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <!-- Ruta para escuchar peticiones HTTP con método PUT utilizando Undertow -->
+    <route id="testRoute">
+        <from uri="platform-http:{{endpoint.url}}/ActualizaTarea"/>
+        <log message="Recibido mensaje HTTP: ${body}"/>
+        <to uri="log:output"/>
+    </route>
+
+
+</routes>
