@@ -12,8 +12,6 @@
             <unmarshal>
                 <json library="Jackson"/>
             </unmarshal>
-            <log message="BODY: ${body[lIdtplTipoTarea]}" /> 
-
             <log id="_log1" message="Consulta servicio restForumGET spFoTareaActualizar: lIdtplTarea= ${body[lIdtplTarea]}, lIdtplTipoTarea= ${body[lIdtplTipoTarea]}, lIdtplTipoEstadoTarea= ${body[lIdtplTipoEstadoTarea]}, lIdtplSeguimientoOper= ${body[lIdtplSeguimientoOper]}, lIdtplSeguimientoOper= ${body[lIdtplUsuarioDueno]}, lIdtplUsuarioEjecutor= ${body[lIdtplUsuarioEjecutor]}, lIdtplUsuarioAsignador= ${body[lIdtplUsuarioAsignador]}, FechaCreacion ${body[dFechaCreacion]}, dFechaPlan ${body[dFechaPlan]}, dFechaTermino ${body[dFechaTermino]}, cObservacion ${body[cObservacion]}, cRespuesta ${body[cRespuesta]}" />
             <to id="_toGL" uri="sql-stored:spFoTareaActualizar( INTEGER ${body[lIdtplTarea]},
                                                                 INTEGER ${body[lIdtplTipoTarea]},
