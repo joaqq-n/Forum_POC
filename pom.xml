@@ -104,11 +104,6 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- Telemetry -->
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-opentelemetry</artifactId>
-    </dependency>
     <dependency>
       <groupId>jdbc.sybase</groupId>
       <artifactId>jconn4d</artifactId>
