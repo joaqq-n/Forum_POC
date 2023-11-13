@@ -9,21 +9,24 @@
         
         <from id="_fromGL" uri="platform-http:{{endpoint.url}}/ActualizaTarea" />
         <doTry id="_doTry1">
-            <log id="_log1"
-					message="Consulta servicio restForumGET spFoTareaActualizar l
-                    lIdtplTarea= ${headers.lIdtplTarea}, lIdtplTipoTarea= ${headers.lIdtplTipoTarea}, lIdtplTipoEstadoTarea= ${headers.lIdtplTipoEstadoTarea}, lIdtplSeguimientoOper= ${headers.lIdtplSeguimientoOper}, lIdtplSeguimientoOper= ${headers.lIdtplUsuarioDueno}, lIdtplUsuarioEjecutor= ${headers.lIdtplUsuarioEjecutor}, lIdtplUsuarioAsignador= ${headers.lIdtplUsuarioAsignador}, FechaCreacion ${headers.dFechaCreacion}, dFechaPlan ${headers.dFechaPlan}, dFechaTermino ${headers.dFechaTermino}, cObservacion ${headers.cObservacion}, cRespuesta ${headers.cRespuesta}" />
-            <to id="_toGL" uri="sql-stored:spFoTareaActualizar( INTEGER ${headers.lIdtplTarea},
-                                                                INTEGER ${headers.lIdtplTipoTarea},
-                                                                INTEGER ${headers.lIdtplTipoEstadoTarea},    
-                                                                INTEGER ${headers.lIdtplSeguimientoOper},    
-                                                                INTEGER ${headers.lIdtplUsuarioDueno},    
-                                                                INTEGER ${headers.lIdtplUsuarioEjecutor},    
-                                                                INTEGER ${headers.lIdtplUsuarioAsignador},    
-                                                                DATE ${headers.dFechaCreacion},    
-                                                                DATE ${headers.dFechaPlan},    
-                                                                DATE ${headers.dFechaTermino},    
-                                                                VARCHAR ${headers.cObservacion},    
-                                                                VARCHAR ${headers.cRespuesta})?dataSource=sybase" />
+            <unmarshal>
+                <json library="Jackson"/>
+            </unmarshal>
+            <log message="BODY: ${body[lIdtplTipoTarea]}" /> 
+
+            <log id="_log1" message="Consulta servicio restForumGET spFoTareaActualizar: lIdtplTarea= ${body[lIdtplTarea]}, lIdtplTipoTarea= ${body[lIdtplTipoTarea]}, lIdtplTipoEstadoTarea= ${body[lIdtplTipoEstadoTarea]}, lIdtplSeguimientoOper= ${body[lIdtplSeguimientoOper]}, lIdtplSeguimientoOper= ${body[lIdtplUsuarioDueno]}, lIdtplUsuarioEjecutor= ${body[lIdtplUsuarioEjecutor]}, lIdtplUsuarioAsignador= ${body[lIdtplUsuarioAsignador]}, FechaCreacion ${body[dFechaCreacion]}, dFechaPlan ${body[dFechaPlan]}, dFechaTermino ${body[dFechaTermino]}, cObservacion ${body[cObservacion]}, cRespuesta ${body[cRespuesta]}" />
+            <to id="_toGL" uri="sql-stored:spFoTareaActualizar( INTEGER ${body[lIdtplTarea]},
+                                                                INTEGER ${body[lIdtplTipoTarea]},
+                                                                INTEGER ${body[lIdtplTipoEstadoTarea]},    
+                                                                INTEGER ${body[lIdtplSeguimientoOper]},    
+                                                                INTEGER ${body[lIdtplUsuarioDueno]},    
+                                                                INTEGER ${body[lIdtplUsuarioEjecutor]},    
+                                                                INTEGER ${body[lIdtplUsuarioAsignador]},    
+                                                                DATE ${body[dFechaCreacion]},    
+                                                                DATE ${body[dFechaPlan]},    
+                                                                DATE ${body[dFechaTermino]},    
+                                                                VARCHAR ${body[cObservacion]},    
+                                                                VARCHAR ${body[cRespuesta]})" />
             <bean id="metodoGL" ref="actualizaTareaBean" />
             <log id="_log2" message="Consulta servicio restForumGET ActualizaTarea...${body.success}..." />
             <doCatch id="_doCatch1">

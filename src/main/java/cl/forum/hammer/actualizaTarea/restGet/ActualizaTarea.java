@@ -21,7 +21,6 @@ import cl.forum.hammer.actualizaTarea.pojo.ActualizaFoTarea;
 import cl.forum.hammer.actualizaTarea.pojo.Body;
 import cl.forum.hammer.actualizaTarea.pojo.ResponseForum;
 import cl.forum.hammer.actualizaTarea.pojo.Return;
-import io.opentelemetry.api.trace.Span;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
 
@@ -45,7 +44,6 @@ public class ActualizaTarea implements ActualizaTareaInterface {
 		Return retorno = new Return();
 		Body cuerpo = new Body();
 		List<ActualizaFoTarea> listaActualizaFoTarea = new ArrayList<ActualizaFoTarea>();
-		Span span = Span.current();
 		try {
 
 			
@@ -65,7 +63,6 @@ public class ActualizaTarea implements ActualizaTareaInterface {
 			@SuppressWarnings("unchecked")
 			Integer update_count_1 = (Integer) objeto.get("#update-count-1");
 
-			span.setAttribute("entry", update_count_1);
 			
 
 			if (update_count_1 == 2) {
@@ -99,7 +96,6 @@ public class ActualizaTarea implements ActualizaTareaInterface {
 
 		response.setBody(cuerpo);
 		response.setRetorno(retorno);
-		span.setAttribute("response", retorno.toString());
 
 		return response;
 	}

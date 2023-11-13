@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<routes xmlns="http://camel.apache.org/schema/spring">
-    <!-- Ruta para escuchar peticiones HTTP con método PUT utilizando Undertow -->
-    <route id="testRoute">
-        <from uri="platform-http:{{endpoint.url}}/ActualizaTarea"/>
-        <log message="Recibido mensaje HTTP: ${body}"/>
-        <to uri="log:output"/>
-    </route>
 
 
-</routes>
+
+  
+    <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://camel.apache.org/schema/spring"
+    xsi:schemaLocation="
+        http://camel.apache.org/schema/spring
+        http://camel.apache.org/schema/spring/camel-spring.xsd">
+        <!-- Ruta para escuchar peticiones HTTP con método PUT utilizando Undertow -->
+        <route id="testRoute">
+            <from uri="platform-http:{{endpoint.url}}/ActualizaTarea"/>
+            <unmarshal>
+                <json library="Jackson"/>
+            </unmarshal>
+            <log message="Recibido mensaje HTTP: ${body[lIdtplTipoTarea]}"/>
+            <to uri="log:output"/>
+        </route>
+    
+    
+    </routes>
+  
